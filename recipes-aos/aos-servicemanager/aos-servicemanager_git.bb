@@ -3,10 +3,10 @@ DESCRIPTION = "AOS Service Manager"
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://LICENSE;md5=86d3f3a95c324c9479bd8986968f4327"
 
-BRANCH = "develop"
+BRANCH = "nm_stack"
 SRCREV = "${AUTOREV}"
 
-SRC_URI = "gitsm://github.com/aosedge/aos_core_sm_cpp.git;protocol=https;branch=${BRANCH}"
+SRC_URI = "gitsm://github.com/MykolaSolyanko/aos_core_sm_cpp.git;protocol=https;branch=${BRANCH}"
 
 SRC_URI += " \
     file://aos_servicemanager.cfg \
@@ -36,6 +36,14 @@ do_configure[network] =  "1"
 
 EXTRA_OECMAKE += "-DFETCHCONTENT_FULLY_DISCONNECTED=OFF"
 
+EXTRA_OECMAKE:append = " -DCMAKE_BUILD_TYPE=RelWithDebInfo"
+
+TARGET_CFLAGS:append = " -O2 -g -Wno-maybe-uninitialized -Wno-unused-parameter -fstack-usage"
+TARGET_CXXFLAGS:append = " -O2 -g -Wno-maybe-uninitialized -Wno-unused-parameter -fstack-usage"
+
+INHIBIT_PACKAGE_STRIP = "1"
+INHIBIT_PACKAGE_DEBUG_SPLIT = "1"
+
 VIRTUAL_RUNC = "${@bb.utils.contains('LAYERSERIES_CORENAMES', 'dunfell', 'virtual/runc', 'virtual-runc', d)}"
 
 RDEPENDS:${PN} += " \
@@ -45,6 +53,7 @@ RDEPENDS:${PN} += " \
     cni \
     aos-firewall \
     aos-dnsname \
+    gdb \
     ${@bb.utils.contains("AOS_RUNNER", "runc", "${VIRTUAL_RUNC}", "${AOS_RUNNER}", d)} \
 "
 
