@@ -2,12 +2,12 @@ FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
 
 DESCRIPTION = "AOS Update Manager"
 
-GO_IMPORT = "github.com/aosedge/aos_updatemanager"
+GO_IMPORT = "github.com/MykolaSuperman/aos_updatemanager"
 
 LICENSE = "Apache-2.0"
 LIC_FILES_CHKSUM = "file://src/${GO_IMPORT}/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57"
 
-BRANCH = "develop"
+BRANCH = "update_net_package"
 SRCREV = "${AUTOREV}"
 
 SRC_URI = "git://${GO_IMPORT}.git;branch=${BRANCH};protocol=https"
