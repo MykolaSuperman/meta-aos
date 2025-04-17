@@ -69,6 +69,9 @@ python do_update_config() {
     data["IAMProtectedServerURL"]= node_hostname+":8089"
     data["IAMPublicServerURL"] = node_hostname+":8090"
 
+    # Update DNS IP
+    data["DNSIp"] = d.getVar("AOS_DNS_IP")
+
     main_node_hostname = d.getVar("AOS_MAIN_NODE_HOSTNAME")
 
     # Update SM controller
