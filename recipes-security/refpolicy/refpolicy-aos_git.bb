@@ -7,6 +7,8 @@ domain, so they have the same access to the system as if \
 SELinux was not enabled. \
 "
 
+DEFAULT_ENFORCING = "permissive"
+
 include recipes-security/refpolicy/refpolicy_common.inc
 
 PV = "2_20220106+git${SRCPV}"
