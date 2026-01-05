@@ -106,7 +106,7 @@ python do_update_config() {
 
     # Set alternative names for server certificates
 
-    for cert_module in data["CertModules"]:
+    for cert_module in data.get("CertModules", []):
         if "ExtendedKeyUsage" in cert_module and "serverAuth" in cert_module["ExtendedKeyUsage"]:
             cert_module["AlternativeNames"] = [d.getVar("AOS_NODE_HOSTNAME")]
 
